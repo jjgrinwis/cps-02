@@ -64,7 +64,7 @@ resource "tfe_variable" "test-a" {
 resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
   common_name                           = var.common_name
   allow_duplicate_common_name           = false
-  sans                                  = local.hostnames
+  sans                                  = [local.hostnames]
   secure_network                        = var.secure_network
   sni_only                              = true
   acknowledge_pre_verification_warnings = false
