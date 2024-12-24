@@ -7,7 +7,9 @@ terraform {
   }
 }
 
-// get all workspaces with name prop-*, we could also use tags
+// get all workspaces based on tags
+// when running 'remote', we need to set TFE token in provider config or ENV var
+// https://registry.terraform.io/providers/hashicorp/tfe/latest/docs#authentication
 data "tfe_workspace_ids" "properties" {
   tag_names    = ["mtls"]
   organization = var.organization
@@ -38,6 +40,20 @@ locals {
 }
 
 resource "null_resource" "entitlement" {
+}
+
+// let's store our entitlement id in a 
+data "tfe_variable_set" "test" {
+  name         = var.variable_set
+  organization = var.organization
+}
+
+resource "tfe_variable" "test-a" {
+  key             = "entitlement_id"
+  value           = resource.null_resource.entitlement.id
+  category        = "terraform"
+  description     = "Our CPS entitlement id"
+  variable_set_id = data.tfe_variable_set.test.id
 }
 
 /*
