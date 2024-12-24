@@ -61,7 +61,7 @@ resource "tfe_variable" "cps_entitlement_id" {
   variable_set_id = data.tfe_variable_set.test.id
 }
 
-
+// make sure san list it not too long. 
 resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
   common_name                           = var.common_name
   allow_duplicate_common_name           = false
