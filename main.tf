@@ -7,7 +7,10 @@ terraform {
   }
 }
 
+resource "null_resource" "entitlement" {
+}
 
+/*
 resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
   common_name                           = var.common_name
   allow_duplicate_common_name           = false
@@ -67,3 +70,4 @@ resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
   }
   contract_id = "ctr_M-1WJGRZ7"
 }
+*/
