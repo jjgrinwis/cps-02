@@ -40,3 +40,8 @@ variable "group_name" {
   description = "Akamai group to lookup contract_id"
   type        = string
 }
+
+variable "entitlement_id" {
+  description = "Our unused entitlement_id to to ignore some warnings"
+  type        = number
+}
