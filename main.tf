@@ -108,7 +108,7 @@ resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
     first_name   = "first"
     last_name    = "last"
     organization = "Akamai"
-    email        = "test@example.com"
+    email        = "test@akamai.com"
     phone        = "061111111"
   }
   organization {
@@ -117,7 +117,7 @@ resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
     address_line_one = "street"
     city             = "city"
     region           = "region"
-    postal_code      = ""
+    postal_code      = "postal"
     country_code     = "NL"
   }
   contract_id = data.akamai_contract.contract.id
