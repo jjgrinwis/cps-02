@@ -1,3 +1,8 @@
+variable "organization" {
+  description = "HCP Terraform organization name"
+  type        = string
+}
+
 variable "common_name" {
   description = "Common Name(CN) of the certificate"
   type        = string
