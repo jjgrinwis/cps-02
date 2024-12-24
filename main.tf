@@ -52,7 +52,8 @@ data "tfe_variable_set" "test" {
   organization = var.organization
 }
 
-resource "tfe_variable" "test-a" {
+// if variable already exists in your variable set just delete it.
+resource "tfe_variable" "cps_entitlement_id" {
   key             = "entitlement_id"
   value           = resource.akamai_cps_dv_enrollment.certificate_enrollment.id
   category        = "terraform"
