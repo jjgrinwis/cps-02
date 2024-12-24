@@ -3,6 +3,12 @@ variable "organization" {
   type        = string
 }
 
+variable "variable_set" {
+  description = "The variable set assigned to our project"
+  type        = string
+  default     = "TFE"
+}
+
 variable "common_name" {
   description = "Common Name(CN) of the certificate"
   type        = string
