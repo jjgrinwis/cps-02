@@ -22,4 +22,5 @@ variable "sans" {
     condition     = length(var.sans) <= 50
     error_message = "The SAN list cannot contain more than 50 elements."
   }
+  default = []
 }
