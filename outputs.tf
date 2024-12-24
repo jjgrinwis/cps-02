@@ -10,5 +10,5 @@ output "sans" {
 
 output "number_of_san_entries" {
   description = "The number of items in our san list, should't be to large"
-  value       = length(akamai_cps_dv_enrollment.certificate_enrollment.sans)
+  value       = length(akamai_cps_dv_enrollment.certificate_enrollment.sans) + 1
 }
