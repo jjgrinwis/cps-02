@@ -7,6 +7,13 @@ terraform {
   }
 }
 
+# just use group_name to lookup our contract_id and group_id
+# this will simplify our variables file as this contains contract and group id
+# use "akamai property groups list" to find all your groups
+data "akamai_contract" "contract" {
+  group_name = var.group_name
+}
+
 // get all workspaces based on tags
 // when running 'remote', we need to set TFE token in provider config or ENV var
 // https://registry.terraform.io/providers/hashicorp/tfe/latest/docs#authentication
@@ -39,10 +46,7 @@ locals {
   }
 }
 
-resource "null_resource" "entitlement" {
-}
-
-// let's store our entitlement id in a 
+// let's store our entitlement id our pre-configured variable set in HCP Terraform.
 data "tfe_variable_set" "test" {
   name         = var.variable_set
   organization = var.organization
@@ -52,15 +56,15 @@ resource "tfe_variable" "test-a" {
   key             = "entitlement_id"
   value           = resource.null_resource.entitlement.id
   category        = "terraform"
-  description     = "Our CPS entitlement id"
+  description     = "Our CPS entitlement id set as a Terraform variable so used as input var for our properties"
   variable_set_id = data.tfe_variable_set.test.id
 }
 
-/*
+
 resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
   common_name                           = var.common_name
   allow_duplicate_common_name           = false
-  sans                                  = var.sans
+  sans                                  = local.hostnames
   secure_network                        = var.secure_network
   sni_only                              = true
   acknowledge_pre_verification_warnings = false
@@ -85,11 +89,13 @@ resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
     state               = ""
   }
   network_configuration {
+    /*
     client_mutual_authentication {
       send_ca_list_to_client = true
       ocsp_enabled           = false
       set_id                 = "84344"
     }
+    */
     disallowed_tls_versions = ["TLSv1", "TLSv1_1", ]
     clone_dns_names         = true
     geography               = "core"
@@ -114,6 +120,6 @@ resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
     postal_code      = ""
     country_code     = ""
   }
-  contract_id = "ctr_M-1WJGRZ7"
+  contract_id = data.akamai_contract.contract.id
 }
-*/
+

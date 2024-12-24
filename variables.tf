@@ -26,6 +26,12 @@ variable "secure_network" {
 
 }
 
+variable "contract" {
+  description = "Common Name(CN) of the certificate"
+  type        = string
+  # validation ( make sure it's a decent CN)
+}
+
 variable "sans" {
   description = "The Subject Alternative Names (SANS) on the certificate"
   type        = set(string)
@@ -34,4 +40,9 @@ variable "sans" {
     error_message = "The SAN list cannot contain more than 50 elements."
   }
   default = []
+}
+
+variable "group_name" {
+  description = "Akamai group to lookup contract_id"
+  type        = string
 }
