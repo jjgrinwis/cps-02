@@ -8,7 +8,7 @@ variable "secure_network" {
   description = "Akamai network to use"
   type        = string
   validation {
-    condition     = contains(["enhanced-tls", "standard-tls"], var.region)
+    condition     = contains(["enhanced-tls", "standard-tls"], var.secure_network)
     error_message = "A valid Akamai network should be selected."
   }
   default = "enhanced-tls"
