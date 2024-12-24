@@ -26,12 +26,6 @@ variable "secure_network" {
 
 }
 
-variable "contract" {
-  description = "Common Name(CN) of the certificate"
-  type        = string
-  # val idation ( make sure it's a decent CN)
-}
-
 variable "sans" {
   description = "The Subject Alternative Names (SANS) on the certificate"
   type        = set(string)

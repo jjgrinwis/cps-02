@@ -54,7 +54,7 @@ data "tfe_variable_set" "test" {
 
 resource "tfe_variable" "test-a" {
   key             = "entitlement_id"
-  value           = resource.null_resource.entitlement.id
+  value           = resource.akamai_cps_dv_enrollment.certificate_enrollment.id
   category        = "terraform"
   description     = "Our CPS entitlement id set as a Terraform variable so used as input var for our properties"
   variable_set_id = data.tfe_variable_set.test.id
