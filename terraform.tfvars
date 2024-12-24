@@ -5,4 +5,4 @@ organization = "grinwis-com"
 group_name = "Ion Standard Beta Jam 1-3-16TWBVX"
 
 // common name of our certificate
-common_name = "mtl-02"
+common_name = "mtls-02"
