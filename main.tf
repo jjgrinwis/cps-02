@@ -78,7 +78,7 @@ resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
     city             = ""
     region           = ""
     postal_code      = ""
-    country_code     = ""
+    country_code     = "NL"
   }
   certificate_chain_type = "default"
   csr {
@@ -118,7 +118,7 @@ resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
     city             = "city"
     region           = "region"
     postal_code      = ""
-    country_code     = ""
+    country_code     = "NL"
   }
   contract_id = data.akamai_contract.contract.id
 }
