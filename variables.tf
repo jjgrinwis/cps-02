@@ -82,3 +82,21 @@ variable "akamai_cert_info" {
     country_code     = "US"
   }
 }
+
+variable "disallowed_tls_versions" {
+  description = "Disallowed TLS versions"
+  type        = list(string)
+  default     = ["TLSv1", "TLSv1_1"]
+}
+
+variable "must_have_ciphers" {
+  description = "The must have ciphers"
+  type        = string
+  default     = "ak-akamai-2020q1"
+}
+
+variable "preferred_ciphers" {
+  description = "The preferred ciphers"
+  type        = string
+  default     = "ak-akamai-2020q1"
+}

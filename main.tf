@@ -97,12 +97,12 @@ resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
       set_id                 = "84344"
     }
     */
-    disallowed_tls_versions = ["TLSv1", "TLSv1_1", ]
+    disallowed_tls_versions = var.disallowed_tls_versions
     clone_dns_names         = true
     geography               = "core"
-    must_have_ciphers       = "ak-akamai-2020q1"
+    must_have_ciphers       = var.must_have_ciphers
     ocsp_stapling           = "on"
-    preferred_ciphers       = "ak-akamai-2020q1"
+    preferred_ciphers       = var.preferred_ciphers
   }
   signature_algorithm = "SHA-256"
   tech_contact {
