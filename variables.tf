@@ -29,7 +29,7 @@ variable "secure_network" {
 variable "contract" {
   description = "Common Name(CN) of the certificate"
   type        = string
-  # validation ( make sure it's a decent CN)
+  # val idation ( make sure it's a decent CN)
 }
 
 variable "sans" {
