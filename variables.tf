@@ -42,6 +42,43 @@ variable "group_name" {
 }
 
 variable "entitlement_id" {
-  description = "Our unused entitlement_id to to ignore some warnings"
+  description = "Our unused entitlement_id to to ignore some warnings as it will be set automatically by a variable set."
   type        = number
+}
+
+// all required certificate information
+variable "customer_cert_info" {
+  description = "All info required for our certificate request"
+  type        = map(string)
+  default = {
+    first_name          = "first"
+    last_name           = "last"
+    organization        = "org"
+    email               = "first.last@example.com"
+    phone               = "06111111"
+    address_line_one    = "address"
+    city                = "city"
+    region              = "region"
+    postal_code         = "postal_code"
+    country_code        = "NL"
+    organizational_unit = ""
+    state               = ""
+  }
+}
+
+variable "akamai_cert_info" {
+  description = "All Akamai required info for our certificate request"
+  type        = map(string)
+  default = {
+    first_name       = "first"
+    last_name        = "last"
+    organization     = "Akamai"
+    email            = "cps@akamai.com"
+    phone            = "+1-6174443000"
+    address_line_one = "145 Broadway"
+    city             = "Cambridge"
+    region           = "region"
+    postal_code      = "MA 02142"
+    country_code     = "US"
+  }
 }

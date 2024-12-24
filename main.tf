@@ -70,24 +70,24 @@ resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
   sni_only                              = true
   acknowledge_pre_verification_warnings = false
   admin_contact {
-    first_name       = "first"
-    last_name        = "last"
-    organization     = "org"
-    email            = "first.last@example.com"
-    phone            = "06111111"
-    address_line_one = ""
-    city             = ""
-    region           = ""
-    postal_code      = ""
-    country_code     = "NL"
+    first_name       = var.customer_cert_info.first_name
+    last_name        = var.customer_cert_info.last_name
+    organization     = var.customer_cert_info.organization
+    email            = var.customer_cert_info.email
+    phone            = var.customer_cert_info.phone
+    address_line_one = var.customer_cert_info.address_line_one
+    city             = var.customer_cert_info.city
+    region           = var.customer_cert_info.region
+    postal_code      = var.customer_cert_info.postal_code
+    country_code     = var.customer_cert_info.country_code
   }
   certificate_chain_type = "default"
   csr {
-    country_code        = "NL"
-    city                = "city"
-    organization        = "org"
-    organizational_unit = ""
-    state               = ""
+    country_code        = var.customer_cert_info.country_code
+    city                = var.customer_cert_info.city
+    organization        = var.customer_cert_info.organization
+    organizational_unit = var.customer_cert_info.organizational_unit
+    state               = var.customer_cert_info.state
   }
   network_configuration {
     /*
@@ -106,20 +106,20 @@ resource "akamai_cps_dv_enrollment" "certificate_enrollment" {
   }
   signature_algorithm = "SHA-256"
   tech_contact {
-    first_name   = "first"
-    last_name    = "last"
-    organization = "Akamai"
-    email        = "test@akamai.com"
-    phone        = "061111111"
+    first_name   = var.akamai_cert_info.first_name
+    last_name    = var.akamai_cert_info.last_name
+    organization = var.akamai_cert_info.organization
+    email        = var.akamai_cert_info.email
+    phone        = var.akamai_cert_info.phone
   }
   organization {
-    name             = "org"
-    phone            = "1111111"
-    address_line_one = "street"
-    city             = "city"
-    region           = "region"
-    postal_code      = "postal"
-    country_code     = "NL"
+    name             = var.akamai_cert_info.organization
+    phone            = var.akamai_cert_info.phone
+    address_line_one = var.akamai_cert_info.address_line_one
+    city             = var.akamai_cert_info.city
+    region           = var.akamai_cert_info.region
+    postal_code      = var.akamai_cert_info.postal_code
+    country_code     = var.akamai_cert_info.country_code
   }
   contract_id = data.akamai_contract.contract.id
 }
